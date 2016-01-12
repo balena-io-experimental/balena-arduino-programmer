@@ -49,7 +49,7 @@ CMD ["bash","start.sh"]
 
 Here we have a flag `PROGRAMMER` which indicates whether there is an update for our Arduino. If the flag is raised we run `make upload` which uploads the image via serial cable `/dev/ttyACM0`. We then store our new `blink.ino` in `/data`. This is important because resin treats `/data` similar to Docker sub-volumes, in that its contents survive container updates which is of coarse crucial to making the comparison between new and old code.
 
-```
+```bash
 # start.sh
 diff /app/blink/blink.ino /data/blink.ino || PROGRAMMER=1
 if [ "${PROGRAMMER:-}" == "1" ]; then
