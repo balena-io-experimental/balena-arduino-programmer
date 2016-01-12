@@ -10,10 +10,10 @@ Connect you Arduino to the resin device via usb. Check the logs to see if you're
 
 The basic workflows is this:
  * Build your Arduino script(`sample.ino` on resin.io builders)
- * When the code lands on the device check if there is a difference between the new arduino code and previously pushed code (which is stored in `/data` to persist through resin updates)
+ * When the code lands on the device check if there is a difference between the new Arduino code and previously pushed code (which is stored in `/data` to persist through resin updates)
  * If there is a difference raise a flag to signal the uploading the built image to the Arduino.
 
-Let's have a look at some code. Ofcoarse the basis for all resin projects is a Dockerfile so lets start there.
+Let's have a look at some code. Of coarse the basis for all resin projects is a Dockerfile so lets start there.
 
 Firstly we need to install some native dependencies.
 ```
@@ -81,4 +81,4 @@ So if a difference is detected our we'll use our `Makefile`'s `upload` function 
 And there you have it updating an Arduino using resin.io.
 
 ## Troubleshooting
-* If the flashing fails, check to see if the `ENV SERIALDEV` is correct for the device path for your Arduino, you can do this by running `ls /dev/tty*` removing the Arduino and running it again and then comparing the output. 
+* If the flashing fails, check to see if the `ENV SERIALDEV` is correct for the device path for your Arduino, you can do this by running `ls /dev/tty*` removing the Arduino and running it again and then comparing the output.
