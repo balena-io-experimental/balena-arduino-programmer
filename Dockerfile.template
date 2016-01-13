@@ -19,7 +19,6 @@ WORKDIR /app
 
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD leonardo
-ENV SERIALDEV /dev/ttyACM0
 
 RUN cd blink && make
 
