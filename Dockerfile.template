@@ -7,17 +7,27 @@ ENV INITSYSTEM on
 
 # install deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    arduino \
     g++ \
     gcc \
     usbutils \
     make
 
+# Arduino installation details
+ENV ARDUINO_VERSION 1.8.1
+ENV ARDUINO_DOWNLOAD https://downloads.arduino.cc/arduino-${ARDUINO_VERSION}-linuxarm.tar.xz
+
+# Install Arduino IDE
+RUN cd /usr/share \
+    && curl --silent --show-error $ARDUINO_DOWNLOAD --output arduino-${ARDUINO_VERSION}.tar.xz \
+    && tar -xf arduino-${ARDUINO_VERSION}.tar.xz \
+    && cd arduino-${ARDUINO_VERSION} \
+    && ./install.sh
+
 COPY /src /app
 
 WORKDIR /app
 
-ENV ARDUINODIR /usr/share/arduino
+ENV ARDUINODIR /usr/share/arduino-${ARDUINO_VERSION}
 ENV BOARD leonardo
 
 RUN cd blink && make
